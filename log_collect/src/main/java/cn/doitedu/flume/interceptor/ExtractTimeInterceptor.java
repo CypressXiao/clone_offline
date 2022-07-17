@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @Date 22.7.17
  * @Created by HANGGE
- * @Description
+ * @Description  学大数据到多易教育
  * 自定义 FLume的拦截器
  *  抽取日志中的时间戳  将时间戳转换成2022-07-16格式
  *  将日期格式的数据存储在Header中  返回
@@ -62,7 +62,6 @@ public class ExtractTimeInterceptor implements Interceptor {
             return event;
         }
     }
-
     /**
      * 处理所有的事件
      * @param events
@@ -98,5 +97,4 @@ public class ExtractTimeInterceptor implements Interceptor {
              dt = context.getString("x");  //
         }
     }
-
 }

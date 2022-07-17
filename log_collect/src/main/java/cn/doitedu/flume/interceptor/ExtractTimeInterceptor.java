@@ -59,6 +59,9 @@ public class ExtractTimeInterceptor implements Interceptor {
             // put数据到Header中
             return event;
         } catch (Exception e) {
+            /**
+             * 如果解析异常就等于拦截器没有生效 ,不会对内部数据做任何处理
+             */
             return event;
         }
     }

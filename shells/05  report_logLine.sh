@@ -23,8 +23,13 @@ if [ $(ls  /doe/data | wc -l) -gt 1 ]; then
      echo "${SERVERNAME} 上报的日志日期是 ${DT} 日志类型: ${LOGTYPE}  日志行数: ${LOGLINE}"
       # 3 开始将数据上报到服务器
       curl  http://windows:8081/api/report  -X POST   -d"{\"serverName\":\"${SERVERNAME}\" , \"logType\":\"${LOGTYPE} \" , \"logCount\":\"${LOGLINE}\" , \"dt\":\"${DT}\"}" -H "Content-Type: application/json"
+      if [ $? -eq 0 ]; then
+          echo  "上报成功...."
+          # 发送邮件    from[组长]    to  [你]
+          echo "${SERVERNAME} 上报的日志日期是 ${DT} 上报成功......."  |  mail -s  "日志上报成功!"  598196583@qq.com
+          else
+            echo "上报失败.."
+                  echo "${SERVERNAME} 上报的日志日期是 ${DT} 上报失败 , 失败原因未知......."  |  mail -s  "日志上报失败!"  598196583@qq.com
+      fi
   done
 fi
-
-
-

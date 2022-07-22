@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * @Author: HANGGE
  * @qq: 598196583
@@ -69,4 +71,29 @@ public class MyServer {
         mapper.addRequestBean(bean); // 实际是实现类
         return bean ;
     }
+
+    /**
+     * 提供服务
+     *   根据日期和日志类型获取日志总行数
+     */
+    @RequestMapping("/getlogLines")
+    @ResponseBody
+    public  Long  getlogLines(@RequestBody RequestBean requestBean){
+        System.out.println(requestBean);
+        List<Long> linesByDTAndLogType = mapper.getLinesByDTAndLogType(requestBean);
+        return  linesByDTAndLogType.get(0);
+    }
+
+
+    /**
+     * 提供服务
+     *   根据日期和日志类型获取HDFS日志总行数
+     */
+    @RequestMapping("/getHdfsLogLines")
+    @ResponseBody
+    public  Long  getHdfsLogLines(@RequestBody RequestBean requestBean){
+        return  mapper.getLinesByDTAndLogTypeWithHDFS(requestBean);
+    }
+
+
 }

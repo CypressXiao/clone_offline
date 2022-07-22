@@ -3,6 +3,9 @@ package com.doitedu.doemeta.dao;
 import com.doitedu.doemeta.beans.RequestBean;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * @Date: 22.7.22
@@ -21,4 +24,20 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MyMapper {
     @Insert("insert  into tb_log_line values(#{serverName} , #{logType} , #{logCount} , #{dt})")
     public void  addRequestBean(RequestBean bean) ;
+
+    @Select("select\n" +
+            "sum(log_count)\n" +
+            "FROM\n" +
+            "tb_log_line \n" +
+            "where servername !='HDFS' and  dt = #{dt}\n" +
+            "GROUP BY dt , log_type \n" +
+            "having log_type = #{logType}")
+    public List<Long> getLinesByDTAndLogType(RequestBean requestBean);
+
+    @Select("select\n" +
+            "log_count\n" +
+            "FROM\n" +
+            "tb_log_line \n" +
+            "where servername ='HDFS' and  dt = #{dt}")
+    public  Long  getLinesByDTAndLogTypeWithHDFS(RequestBean requestBean);
 }

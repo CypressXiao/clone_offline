@@ -1,6 +1,8 @@
 package com.doitedu.doemeta.controller;
 
 import com.doitedu.doemeta.beans.RequestBean;
+import com.doitedu.doemeta.dao.MyMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,9 +13,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @qq: 598196583
  * @Tips: 学大数据 ,到多易教育
  * @Description:
+ * 接收请求
+ * 接收请求参数
+ * 处理请求
+ *    判断业务
+ *    操作数据库  JDBC
+ * 返回结果
  */
 @Controller
+@RequestMapping("/api")
 public class MyServer {
+    /**
+     * 自动注入  MyMapper的代理实现类
+     */
+    @Autowired
+    MyMapper mapper ;
+
     /**
      * java类的方法是可以接收页面的请求的
      *     <a href="click">点击</a>
@@ -43,18 +58,15 @@ public class MyServer {
      *   使用Bean接收数据 ,以请求对应的参数  和 类的数据对应接收
      * @return
      */
-    @RequestMapping("/click2")
+    @RequestMapping("/report")
     @ResponseBody
-    public  RequestBean  click2(@RequestBody RequestBean bean){
+    public  RequestBean  report(@RequestBody RequestBean bean){
         System.out.println("接收到的数据:"+ bean);
         /**
          * 接收到请求参数
          * 将数据存储到MySQL库
          */
+        mapper.addRequestBean(bean); // 实际是实现类
         return bean ;
     }
-
-
-
-
 }

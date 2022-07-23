@@ -29,7 +29,7 @@ if [ $(ls  /doe/data | wc -l) -gt 1 ]; then
           echo "${SERVERNAME} 上报的日志日期是 ${DT} 上报成功......."  |  mail -s  "日志上报成功!"  598196583@qq.com
           else
             echo "上报失败.."
-                  echo "${SERVERNAME} 上报的日志日期是 ${DT} 上报失败 , 失败原因未知......."  |  mail -s  "日志上报失败!"  598196583@qq.com
+            echo "${SERVERNAME} 上报的日志日期是 ${DT} 上报失败 , 失败原因未知......."  |  mail -s  "日志上报失败!"  598196583@qq.com
       fi
   done
 fi

@@ -13,4 +13,4 @@
 #  请求的服务地址  http://windows:8081/click2
 #  请求的参数: serverName  logType  logCount
 ###############################################
-curl  http://windows:8081/click2  -X POST   -d"{\"serverName\":\"doitedu01\" , \"logType\":\"app_log\" , \"logCount\":\"20000\"}" -H "Content-Type: application/json"
+curl  http://windows:8080/click2  -X POST   -d"{\"serverName\":\"doitedu01\" , \"logType\":\"app_log\" , \"logCount\":\"20000\"}" -H "Content-Type: application/json"

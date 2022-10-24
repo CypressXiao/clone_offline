@@ -80,8 +80,7 @@ public class MyServer {
     @ResponseBody
     public  Long  getlogLines(@RequestBody RequestBean requestBean){
         System.out.println(requestBean);
-        List<Long> linesByDTAndLogType = mapper.getLinesByDTAndLogType(requestBean);
-        return  linesByDTAndLogType.get(0);
+        return  mapper.getLinesByDTAndLogType(requestBean).get(0);
     }
 
 
